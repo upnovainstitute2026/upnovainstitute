@@ -352,7 +352,171 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
   .hero{padding:4rem 1.25rem 5rem}
   .modal-box{padding:2rem 1.5rem}
 }
+
+/* ── VIDEO / COVER PLACEHOLDER ─────────────────────────── */
+.cover-wrap{max-width:820px;margin:2.5rem auto 3rem;position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 72px rgba(11,14,20,.18);cursor:pointer}
+.cover-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f2744 100%)}
+.cover-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(11,14,20,.72) 0%,rgba(8,100,140,.6) 100%)}
+.cover-live-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--rose);color:#fff;padding:.4rem 1rem;border-radius:9999px;font-size:.75rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem}
+.cover-play{width:80px;height:80px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:2.5px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s ease;margin-bottom:1.5rem}
+.cover-play:hover{background:rgba(255,255,255,.25);transform:scale(1.08)}
+.cover-play svg{width:28px;height:28px;color:#fff;margin-left:4px}
+.cover-title{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.25rem,3vw,2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:.5rem;padding:0 1.5rem}
+.cover-sub{color:rgba(255,255,255,.65);font-size:.9375rem;font-weight:500;text-align:center}
+.cover-badges{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;justify-content:center;padding:0 1rem}
+.cover-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:.4rem 1rem;border-radius:9999px;font-size:.8125rem;font-weight:600}
+.cover-bottom-bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:1.5rem 2rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.cover-date-tag{color:rgba(255,255,255,.8);font-size:.875rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+.cover-price-tag{background:var(--flame);color:#fff;padding:.4rem 1.125rem;border-radius:9999px;font-weight:800;font-size:.9375rem}
+
+/* ── LEAD MAGNET STEP ───────────────────────────────────── */
+.lead-step{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #bae6fd;border-radius:var(--radius-lg);padding:2rem;margin-bottom:1.5rem;text-align:center}
+.lead-icon{font-size:2.5rem;margin-bottom:.75rem}
+.lead-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.25rem;font-weight:800;color:var(--ink);margin-bottom:.5rem}
+.lead-sub{font-size:.875rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.lead-gift{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1.5px solid var(--sky);border-radius:var(--radius);padding:.875rem 1.25rem;margin-bottom:1.25rem;width:100%;text-align:left}
+.lead-gift-icon{font-size:1.5rem;flex-shrink:0}
+.lead-gift-text{font-size:.875rem;font-weight:700;color:var(--ink)}
+.lead-gift-text span{display:block;font-weight:500;color:var(--muted);font-size:.8125rem;margin-top:.1rem}
+.lead-divider{display:flex;align-items:center;gap:.75rem;margin:.75rem 0;color:var(--muted);font-size:.8125rem;font-weight:600}
+.lead-divider::before,.lead-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── TESTIMONIALS ───────────────────────────────────────── */
+.testi-section{padding:5.5rem 1.5rem;background:var(--ink);position:relative;overflow:hidden}
+.testi-section::before{content:'';position:absolute;top:-150px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(14,165,233,.08) 0%,transparent 65%);pointer-events:none}
+.testi-track-wrap{overflow:hidden;position:relative;margin-top:3rem}
+.testi-track{display:flex;gap:1.5rem;animation:scrollTesti 30s linear infinite;width:max-content}
+.testi-track:hover{animation-play-state:paused}
+.testi-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:1.875rem;width:320px;flex-shrink:0;transition:all .3s ease}
+.testi-card:hover{background:rgba(255,255,255,.09);border-color:rgba(14,165,233,.35);transform:translateY(-4px)}
+.testi-stars{color:#fbbf24;font-size:1rem;margin-bottom:1rem;letter-spacing:2px}
+.testi-quote{color:rgba(255,255,255,.8);font-size:.9375rem;line-height:1.7;margin-bottom:1.375rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:.875rem}
+.testi-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.9375rem;flex-shrink:0;color:#fff}
+.testi-name{font-weight:700;color:#fff;font-size:.9375rem}
+.testi-role{font-size:.8125rem;color:rgba(255,255,255,.45);margin-top:.1rem}
+.testi-wa-badge{display:inline-flex;align-items:center;gap:.375rem;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);color:#4ade80;padding:.25rem .625rem;border-radius:9999px;font-size:.6875rem;font-weight:700;margin-top:.75rem}
+@keyframes scrollTesti{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.testi-fade-l,.testi-fade-r{position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.testi-fade-l{left:0;background:linear-gradient(to right,var(--ink),transparent)}
+.testi-fade-r{right:0;background:linear-gradient(to left,var(--ink),transparent)}
+
+/* ── ADD TO CALENDAR ────────────────────────────────────── */
+.cal-btns{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;justify-content:center}
+.cal-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.625rem 1.125rem;border-radius:var(--radius);font-size:.8125rem;font-weight:700;text-decoration:none;border:1.5px solid var(--border);color:var(--text);background:#fff;transition:all .25s ease;cursor:pointer}
+.cal-btn:hover{border-color:var(--sky);color:var(--sky);transform:translateY(-2px);box-shadow:0 6px 16px var(--sky-glow)}
+.cal-btn svg{width:16px;height:16px;flex-shrink:0}
+
+/* ── MOBILE DEEP FIXES ──────────────────────────────────── */
+@media(max-width:640px){
+  /* Sticky bar — single line */
+  .sticky-left{flex-direction:row;flex-wrap:wrap;gap:.5rem;font-size:.75rem}
+  .sticky-cta{padding:.5rem 1.125rem;font-size:.8125rem}
+
+  /* Hero */
+  .hero{padding:3.5rem 1rem 4.5rem}
+  .hero-title{font-size:2.25rem;letter-spacing:-.02em}
+  .hero-sub{font-size:1rem}
+  .pills{gap:.5rem}
+  .pill{font-size:.8125rem;padding:.45rem .875rem}
+  .countdown{padding:1.25rem 1rem;gap:.375rem}
+  .cd-num{font-size:2rem;min-width:40px}
+  .cd-unit{font-size:.6rem}
+  .cd-sep{font-size:1.5rem}
+  .progress-wrap{padding:1.5rem 1.25rem}
+  .event-meta{gap:.875rem}
+  .price-chip{font-size:.875rem;padding:.55rem 1rem}
+
+  /* Cover */
+  .cover-play{width:64px;height:64px}
+  .cover-play svg{width:22px;height:22px}
+  .cover-title{font-size:1.125rem}
+  .cover-bottom-bar{padding:1rem 1.25rem}
+
+  /* Compare table — stack properly */
+  .compare-head{display:none}
+  .compare-row{grid-template-columns:1fr;border:1.5px solid var(--border);border-radius:var(--radius);margin-bottom:.75rem;overflow:hidden}
+  .compare-row:last-child{border-radius:var(--radius)}
+  .cc{padding:.875rem 1rem;text-align:left}
+  .cc-task{font-weight:800;background:var(--cream)}
+  .cc-slow::before{content:"❌ Without AI: ";font-size:.75rem;font-weight:600;color:var(--muted)}
+  .cc-fast::before{content:"✅ With AI: ";font-size:.75rem;font-weight:600;color:var(--muted)}
+  .cc-slow,.cc-fast{font-size:.9375rem}
+
+  /* Mentor cards */
+  .mentor-card{padding:1.5rem}
+  .mentor-name{font-size:1.25rem}
+  .ms-box{min-width:0}
+
+  /* News grid */
+  .news-grid{grid-template-columns:1fr}
+
+  /* Testimonial card */
+  .testi-card{width:280px}
+
+  /* Timeline */
+  .timeline::before{display:none}
+  .tl-item{grid-template-columns:1fr;gap:.5rem}
+  .tl-time{font-size:.875rem;color:var(--sky);font-weight:800;padding:0}
+  .tl-card{padding:1.25rem}
+
+  /* Price */
+  .ph-amount{font-size:3.5rem}
+
+  /* Modals */
+  .modal-box{padding:1.75rem 1.25rem;border-radius:var(--radius)}
+  .modal-title{font-size:1.5rem}
+
+  /* Sections */
+  .section{padding:3.5rem 1rem}
+  .sec-title{font-size:1.875rem}
+  .sec-sub{font-size:1rem}
+  .sec-hd{margin-bottom:2.5rem}
+
+  /* ROI card */
+  .roi-card{padding:1.5rem}
+
+  /* Cert */
+  .cert-shell{padding:1rem}
+  .cert-validates{padding:1.5rem}
+
+  /* Final CTA */
+  .final-cta{padding:4rem 1rem}
+  .fc-title{font-size:1.875rem}
+
+  /* WhatsApp float */
+  .wa-float{width:50px;height:50px;bottom:20px;right:16px}
+  .wa-float svg{width:26px;height:26px}
+
+  /* Live notif */
+  #live-notif{left:10px;right:10px;bottom:80px;max-width:none}
+}
+
 </style>
+
+<!-- Google Analytics GA4 -->
+<!-- Replace G-XXXXXXXXXX with your actual Measurement ID from analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Meta Pixel -->
+<!-- Replace YOUR_PIXEL_ID with your actual Pixel ID from business.facebook.com -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'YOUR_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
@@ -396,6 +560,34 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
     </h1>
 
     <p class="hero-sub">Save 2+ Hours Daily &amp; Upgrade Your Career with AI</p>
+
+    
+    <!-- COVER IMAGE / VIDEO PLACEHOLDER -->
+    <div class="cover-wrap" onclick="openRegModal()">
+      <div class="cover-inner">
+        <div class="cover-live-tag">
+          <span class="pulse-dot" style="background:#fff"></span>
+          LIVE MASTERCLASS PREVIEW
+        </div>
+        <div class="cover-play">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="cover-title">AI Tools &amp; ChatGPT Mastery 2026</div>
+        <div class="cover-sub">3-Hour Live Power Session &nbsp;·&nbsp; 22 March 2026</div>
+        <div class="cover-badges">
+          <span class="cover-badge">&#127919; No Coding Needed</span>
+          <span class="cover-badge">&#9989; Certificate Included</span>
+          <span class="cover-badge">&#128202; Live Demos</span>
+        </div>
+      </div>
+      <div class="cover-bottom-bar">
+        <span class="cover-date-tag">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+          22 March 2026 &nbsp;·&nbsp; 11:00 AM IST
+        </span>
+        <span class="cover-price-tag">&#8377;99 Only</span>
+      </div>
+    </div>
 
     <div class="pills">
       <div class="pill"><span class="pi"><svg viewBox="0 0 10 10" fill="currentColor"><polyline points="1,5 4,8 9,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>Live 3-Hour Power Session</div>
@@ -850,6 +1042,137 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
   </div>
 </section>
 
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="container">
+    <div class="sec-hd">
+      <div class="sec-chip sec-chip-dark">&#11088; Student Reviews</div>
+      <h2 class="sec-title sec-title-w">What Our Students Say</h2>
+      <p class="sec-sub sec-sub-w">Real feedback from real professionals who attended our sessions</p>
+    </div>
+  </div>
+
+  <div class="testi-track-wrap">
+    <div class="testi-fade-l"></div>
+    <div class="testi-fade-r"></div>
+    <div class="testi-track" id="testi-track">
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"I saved 2 hours on my first day itself! Created a full presentation using ChatGPT in under 10 minutes. My manager was shocked."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">PR</div>
+          <div><div class="testi-name">Priya Rao</div><div class="testi-role">Marketing Manager, Bengaluru</div></div>
+        </div>
+        <div class="testi-wa-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verified via WhatsApp
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Worth every rupee! For ₹99 I got skills that helped me get a 30% salary hike in 3 months. Subir explains everything so simply."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#f97316,#ea6c0a)">RK</div>
+          <div><div class="testi-name">Rahul Kumar</div><div class="testi-role">Business Analyst, Pune</div></div>
+        </div>
+        <div class="testi-wa-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verified via WhatsApp
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"As a non-tech person I was scared but Supratik made it super easy. I now use AI daily for my reports. Absolutely life-changing!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">AM</div>
+          <div><div class="testi-name">Anita Mishra</div><div class="testi-role">HR Executive, Delhi</div></div>
+        </div>
+        <div class="testi-wa-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verified via WhatsApp
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Excel automation alone saved me 1.5 hours every single day. The ROI on this ₹99 workshop is insane. Already recommended to my whole team."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#a78bfa,#7c3aed)">VS</div>
+          <div><div class="testi-name">Vikram Sharma</div><div class="testi-role">Finance Manager, Mumbai</div></div>
+        </div>
+        <div class="testi-wa-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verified via WhatsApp
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"The prompt engineering techniques alone were worth 10x the price. I write better proposals now and my clients are very impressed."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">ND</div>
+          <div><div class="testi-name">Neha Das</div><div class="testi-role">Freelance Consultant, Kolkata</div></div>
+        </div>
+        <div class="testi-wa-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verified via WhatsApp
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"I was sceptical about online workshops but this completely changed my mind. Very practical, very engaging. Best ₹99 I ever spent!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#ef4444,#dc2626)">SP</div>
+          <div><div class="testi-name">Sanjay Patil</div><div class="testi-role">Operations Lead, Hyderabad</div></div>
+        </div>
+        <div class="testi-wa-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verified via WhatsApp
+        </div>
+      </div>
+
+      <!-- Duplicate set for seamless loop -->
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"I saved 2 hours on my first day itself! Created a full presentation using ChatGPT in under 10 minutes. My manager was shocked."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">PR</div>
+          <div><div class="testi-name">Priya Rao</div><div class="testi-role">Marketing Manager, Bengaluru</div></div>
+        </div>
+        <div class="testi-wa-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Verified via WhatsApp</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Worth every rupee! For ₹99 I got skills that helped me get a 30% salary hike in 3 months. Subir explains everything so simply."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#f97316,#ea6c0a)">RK</div>
+          <div><div class="testi-name">Rahul Kumar</div><div class="testi-role">Business Analyst, Pune</div></div>
+        </div>
+        <div class="testi-wa-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Verified via WhatsApp</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Excel automation alone saved me 1.5 hours every single day. The ROI on this ₹99 workshop is insane. Already recommended to my whole team."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#a78bfa,#7c3aed)">VS</div>
+          <div><div class="testi-name">Vikram Sharma</div><div class="testi-role">Finance Manager, Mumbai</div></div>
+        </div>
+        <div class="testi-wa-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Verified via WhatsApp</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:3rem">
+    <button class="btn-primary btn-flame" onclick="openRegModal()">JOIN 120+ REGISTERED STUDENTS &#8594;</button>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container" style="position:relative;z-index:1;text-align:center">
@@ -895,7 +1218,32 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
 <div id="reg-modal" class="modal-overlay">
   <div class="modal-box">
     <button class="modal-close" onclick="closeRegModal()">&#215;</button>
-    <div id="reg-step1" class="form-step active">
+    <!-- STEP 0: Lead Magnet Email Capture -->
+    <div id="reg-step0" class="form-step active">
+      <div class="lead-step">
+        <div class="lead-icon">&#127873;</div>
+        <div class="lead-title">Get Your FREE AI Tools PDF!</div>
+        <div class="lead-sub">Enter your email to instantly receive our exclusive <strong>"50 ChatGPT Prompts for Professionals"</strong> guide — completely free.</div>
+        <div class="lead-gift">
+          <span class="lead-gift-icon">&#128209;</span>
+          <div class="lead-gift-text">50 ChatGPT Prompts for Professionals
+            <span>PDF Guide &nbsp;&middot;&nbsp; Worth &#8377;499 &nbsp;&middot;&nbsp; FREE for you</span>
+          </div>
+        </div>
+        <label class="form-label" style="text-align:left">Your Email Address</label>
+        <input type="email" id="lead-email" class="form-input" placeholder="your@email.com">
+        <button class="btn-primary" onclick="claimFreeGift()" style="width:100%;margin-bottom:.75rem">
+          &#127873; CLAIM FREE PDF &amp; RESERVE SEAT
+        </button>
+        <div class="lead-divider">or continue directly</div>
+        <button onclick="skipToReg()" style="background:none;border:none;color:var(--muted);font-size:.875rem;cursor:pointer;text-decoration:underline;font-weight:600;width:100%">
+          Skip &mdash; just go to registration
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 1: Full Details -->
+    <div id="reg-step1" class="form-step">
       <h3 class="modal-title">Reserve Your &#8377;99 Seat</h3>
       <label class="form-label">Full Name</label>
       <input type="text" id="reg-name" class="form-input" placeholder="Enter your full name">
@@ -948,6 +1296,25 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Join Private WhatsApp Group
     </a>
+    
+    <div style="margin-top:1.5rem;text-align:center">
+      <p style="font-size:.875rem;font-weight:700;color:var(--ink);margin-bottom:.75rem">&#128197; Add to your calendar so you don't miss it!</p>
+      <div class="cal-btns">
+        <a class="cal-btn" id="gcal-link" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#4285f4"><path d="M19 3H18V1H16V3H8V1H6V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V8H19V19Z"/></svg>
+          Google Calendar
+        </a>
+        <a class="cal-btn" id="outlook-link" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#0078d4"><path d="M24 12.001L19.2 8.4V4.8h-4.8L12 2.4 9.6 4.8H4.8v3.6L0 12.001l4.8 3.6V19.2h4.8L12 21.6l2.4-2.4h4.8v-3.599L24 12.001z"/></svg>
+          Outlook
+        </a>
+        <a class="cal-btn" id="ical-link" href="#" download="AI-Masterclass-2026.ics">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#555"><path d="M19 3H18V1H16V3H8V1H6V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V8H19V19Z"/></svg>
+          Apple / iCal
+        </a>
+      </div>
+    </div>
+
     <div class="notif-sent">
       <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
       Confirmation sent via Email &amp; SMS
@@ -1027,8 +1394,21 @@ const PAYMENT_LINK = 'https://rzp.io/rzp/WEiu78bx';
 const WA_GROUP_LINK = 'https://chat.whatsapp.com/GPr7ARlNrpoDhlZ3RTzdil?mode=hq2tcla';
 
 // ─── MODAL CONTROLS ──────────────────────────────────────
-function openRegModal(){document.getElementById('reg-modal').classList.add('open');document.body.style.overflow='hidden'}
-function closeRegModal(){document.getElementById('reg-modal').classList.remove('open');document.body.style.overflow=''}
+function openRegModal(){
+  document.getElementById('reg-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  // Meta Pixel: track lead intent
+  if(typeof fbq!=='undefined') fbq('track','InitiateCheckout');
+  // GA4 event
+  if(typeof gtag!=='undefined') gtag('event','begin_checkout',{currency:'INR',value:99});
+}
+function closeRegModal(){
+  document.getElementById('reg-modal').classList.remove('open');
+  document.body.style.overflow='';
+  // Reset to step 0 (lead magnet) on next open
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('reg-step0').classList.add('active');
+}
 
 function goStep2(){
   const n=document.getElementById('reg-name').value.trim();
@@ -1095,6 +1475,9 @@ function showSuccessModal(name,email,phone,paymentId){
   
   // Show payment ID in console (user can screenshot Razorpay receipt)
   console.log('Booking confirmed for:',name,email,'Payment:',paymentId);
+  // Track conversion
+  if(typeof fbq!=='undefined') fbq('track','Purchase',{currency:'INR',value:99,content_name:'AI Masterclass 2026'});
+  if(typeof gtag!=='undefined') gtag('event','purchase',{currency:'INR',value:99,transaction_id:paymentId});
   
   document.getElementById('success-modal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -1124,6 +1507,72 @@ function launchConfetti(){
     setTimeout(()=>el.remove(),(Math.random()*2+2)*1000);
   }
 }
+
+
+
+// ─── LEAD MAGNET ─────────────────────────────────────────
+function claimFreeGift(){
+  const em = document.getElementById('lead-email').value.trim();
+  if(!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){
+    document.getElementById('lead-email').style.borderColor='var(--rose)';
+    setTimeout(()=>document.getElementById('lead-email').style.borderColor='',2500);
+    alert('Please enter a valid email to claim your free PDF');
+    return;
+  }
+  // Store email for pre-fill
+  document.getElementById('reg-email').value = em;
+  // Track lead capture
+  if(typeof fbq!=='undefined') fbq('track','Lead',{content_name:'AI Tools PDF'});
+  if(typeof gtag!=='undefined') gtag('event','generate_lead',{currency:'INR',value:0});
+  // Store in sessionStorage for follow-up
+  sessionStorage.setItem('upnova_lead_email', em);
+  console.log('Lead captured:', em);
+  // Move to registration step
+  document.getElementById('reg-step0').classList.remove('active');
+  document.getElementById('reg-step1').classList.add('active');
+}
+
+function skipToReg(){
+  document.getElementById('reg-step0').classList.remove('active');
+  document.getElementById('reg-step1').classList.add('active');
+}
+
+// ─── CALENDAR LINKS ───────────────────────────────────────
+function buildCalendarLinks(){
+  // Event: 22 March 2026, 11:00 AM - 2:00 PM IST (UTC+5:30)
+  const start = '20260322T053000Z'; // 11:00 AM IST = 05:30 UTC
+  const end   = '20260322T083000Z'; // 02:00 PM IST = 08:30 UTC
+  const title = encodeURIComponent('AI Tools & ChatGPT Mastery 2026 – Live Masterclass');
+  const details = encodeURIComponent('Join the live 3-hour masterclass by Upnova Institute.\nWhatsApp Group: https://chat.whatsapp.com/GPr7ARlNrpoDhlZ3RTzdil');
+  const loc   = encodeURIComponent('Online – Zoom (link in WhatsApp group)');
+
+  // Google Calendar
+  const gCal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${loc}`;
+  document.getElementById('gcal-link').href = gCal;
+
+  // Outlook
+  const outlook = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${title}&startdt=2026-03-22T05:30:00Z&enddt=2026-03-22T08:30:00Z&body=${details}&location=${loc}`;
+  document.getElementById('outlook-link').href = outlook;
+
+  // iCal (.ics file)
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'BEGIN:VEVENT',
+    'DTSTART:' + start,
+    'DTEND:' + end,
+    'SUMMARY:AI Tools & ChatGPT Mastery 2026 – Live Masterclass',
+    'DESCRIPTION:Join the live 3-hour masterclass by Upnova Institute.\nWhatsApp Group: https://chat.whatsapp.com/GPr7ARlNrpoDhlZ3RTzdil',
+    'LOCATION:Online – Zoom (link in WhatsApp group)',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\n');
+  const icsBlob = new Blob([ics],{type:'text/calendar'});
+  document.getElementById('ical-link').href = URL.createObjectURL(icsBlob);
+}
+
+// Build calendar links on page load
+window.addEventListener('DOMContentLoaded', buildCalendarLinks);
 
 
 // ─── RETURN FROM RAZORPAY PAYMENT PAGE ───────────────────
