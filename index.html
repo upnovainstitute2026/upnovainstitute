@@ -353,9 +353,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
   .modal-box{padding:2rem 1.5rem}
 }
 </style>
-
-<!-- Razorpay SDK -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -1026,9 +1023,7 @@ function calcROI(){
 }
 
 // ─── CONFIG ─────────────────────────────────────────────
-// Replace with your actual Razorpay Key ID from dashboard.razorpay.com
-const RAZORPAY_KEY = 'rzp_test_REPLACE_WITH_YOUR_KEY';
-// Replace with your actual WhatsApp group invite link
+const PAYMENT_LINK = 'https://rzp.io/rzp/WEiu78bx';
 const WA_GROUP_LINK = 'https://chat.whatsapp.com/GPr7ARlNrpoDhlZ3RTzdil?mode=hq2tcla';
 
 // ─── MODAL CONTROLS ──────────────────────────────────────
@@ -1063,113 +1058,34 @@ function showFieldError(){
 
 function goStep1(){document.getElementById('reg-step2').classList.remove('active');document.getElementById('reg-step1').classList.add('active')}
 
-// ─── RAZORPAY PAYMENT ────────────────────────────────────
+// ─── RAZORPAY PAYMENT LINK ───────────────────────────────
 function launchRazorpay(){
-  const name=document.getElementById('reg-name').value.trim();
-  const email=document.getElementById('reg-email').value.trim();
-  const phone=document.getElementById('reg-phone').value.trim().replace(/[^\d]/g,'');
-  const cleanPhone=phone.length===10?'91'+phone:phone;
+  const name  = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const phone = document.getElementById('reg-phone').value.trim();
 
-  // Show loading state
-  const btn=document.getElementById('pay-btn');
-  btn.disabled=true;
-  btn.style.opacity='0.75';
-  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="animation:spin 0.8s linear infinite;vertical-align:middle;margin-right:6px"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Opening Razorpay...';
+  // Show loading state on button
+  const btn = document.getElementById('pay-btn');
+  btn.disabled = true;
+  btn.style.opacity = '0.75';
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="animation:spin 0.8s linear infinite;vertical-align:middle;margin-right:6px"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Redirecting to Payment...';
 
-  const options={
-    key: RAZORPAY_KEY,
-    amount: 9900,           // Amount in paise (99 × 100)
-    currency: 'INR',
-    name: 'Upnova Institute',
-    description: 'AI Tools & ChatGPT Mastery 2026 – Live Masterclass',
-    image: 'https://i.imgur.com/placeholder.png', // Replace with your logo URL
-    
-    // Pre-fill customer details
-    prefill:{
-      name: name,
-      email: email,
-      contact: '+'+cleanPhone
-    },
-
-    // Razorpay built-in notifications config
-    // Razorpay automatically sends email+SMS confirmation when these are set
-    notify:{
-      sms: true,
-      email: true
-    },
-
-    // Notes stored with the payment (visible in Razorpay dashboard)
-    notes:{
-      event: 'AI Tools & ChatGPT Mastery 2026',
-      event_date: '22 March 2026',
-      event_time: '11:00 AM IST',
-      customer_name: name,
-      whatsapp: phone
-    },
-
-    theme:{
-      color: '#0ea5e9',
-      backdrop_color: 'rgba(11,14,20,0.85)'
-    },
-
-    modal:{
-      ondismiss: function(){
-        // Reset button if user closes Razorpay without paying
-        btn.disabled=false;
-        btn.style.opacity='1';
-        btn.innerHTML='PAY &#8377;99 &amp; RESERVE SEAT &#128274;';
-      }
-    },
-
-    // ── SUCCESS HANDLER ──────────────────────────────────
-    handler: function(response){
-      // response.razorpay_payment_id  — unique payment ID
-      // response.razorpay_order_id    — order ID (if using orders API)
-      // response.razorpay_signature   — signature (verify server-side)
-
-      closeRegModal();
-      showSuccessModal(name, email, phone, response.razorpay_payment_id);
-
-      // ── RAZORPAY BUILT-IN: email + SMS auto-sent by Razorpay ──
-      // Razorpay automatically sends payment receipt to prefill.email + prefill.contact
-      // To send CUSTOM confirmation message, use Razorpay Webhooks on your server:
-      //
-      // Webhook event: payment.captured
-      // Your backend receives POST → sends custom email via SendGrid/Mailgun
-      // and SMS via MSG91/Twilio with the message below:
-      //
-      // "Hello 👋 Your seat for the AI Tools & ChatGPT Mastery 2026 Masterclass
-      //  is confirmed ✅ 📅 Date: 22 March 2026 ⏰ Time: 11:00 AM
-      //  Join WhatsApp group: [WA_GROUP_LINK]
-      //  We look forward to seeing you 🚀 – Team Upnova Institute"
-
-      console.log('Payment successful. ID:', response.razorpay_payment_id);
-
-      // Push to analytics (if connected)
-      if(typeof gtag!=='undefined'){
-        gtag('event','purchase',{currency:'INR',value:99,transaction_id:response.razorpay_payment_id});
-      }
-    }
-  };
-
-  // Check if Razorpay SDK loaded
-  if(typeof Razorpay==='undefined'){
-    alert('Payment gateway is loading. Please wait a moment and try again.');
-    btn.disabled=false;btn.style.opacity='1';
-    btn.innerHTML='PAY &#8377;99 &amp; RESERVE SEAT &#128274;';
-    return;
-  }
-
-  const rzp=new Razorpay(options);
-  
-  rzp.on('payment.failed',function(response){
-    btn.disabled=false;btn.style.opacity='1';
-    btn.innerHTML='PAY &#8377;99 &amp; RESERVE SEAT &#128274;';
-    alert('Payment failed: '+response.error.description+'\nPlease try again or use a different payment method.');
-    console.error('Razorpay error:',response.error);
+  // Build Razorpay payment page URL with pre-filled customer details
+  // Razorpay Payment Links support ?prefill[name], ?prefill[email], ?prefill[contact]
+  const params = new URLSearchParams({
+    'prefill[name]':    name,
+    'prefill[email]':   email,
+    'prefill[contact]': phone.replace(/[^\d+]/g,'').startsWith('+') ? phone.replace(/[^\d+]/g,'') : '+91' + phone.replace(/[^\d]/g,'').slice(-10)
   });
 
-  rzp.open();
+  const payUrl = PAYMENT_LINK + '?' + params.toString();
+
+  // Store registration details in sessionStorage so the return page can show the success modal
+  sessionStorage.setItem('upnova_reg', JSON.stringify({name, email, phone}));
+
+  // Open Razorpay payment link in same tab
+  // Razorpay handles its own email + SMS receipt automatically after payment
+  setTimeout(() => { window.location.href = payUrl; }, 600);
 }
 
 // ─── SUCCESS MODAL ────────────────────────────────────────
@@ -1208,6 +1124,29 @@ function launchConfetti(){
     setTimeout(()=>el.remove(),(Math.random()*2+2)*1000);
   }
 }
+
+
+// ─── RETURN FROM RAZORPAY PAYMENT PAGE ───────────────────
+// Razorpay Payment Links redirect back with ?razorpay_payment_id=... on success
+(function detectReturnFromPayment(){
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentId = urlParams.get('razorpay_payment_id');
+  const paymentStatus = urlParams.get('razorpay_payment_link_status');
+
+  if(paymentId || paymentStatus === 'paid'){
+    // Retrieve stored registration details
+    let reg = {};
+    try{ reg = JSON.parse(sessionStorage.getItem('upnova_reg') || '{}'); }catch(e){}
+
+    // Clean URL without reloading
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    // Show success modal after page settles
+    setTimeout(() => {
+      showSuccessModal(reg.name || 'Registrant', reg.email || '', reg.phone || '', paymentId || 'confirmed');
+    }, 800);
+  }
+})();
 
 // Add confetti keyframe dynamically
 const confettiStyle=document.createElement('style');
