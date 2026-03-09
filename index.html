@@ -275,10 +275,26 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
 .notif-dot{width:10px;height:10px;background:var(--emerald);border-radius:50%;flex-shrink:0;animation:dotPulse 1.8s infinite}
 .notif-text{font-size:.875rem;font-weight:600;color:var(--ink)}
 
+
+/* SUCCESS MODAL */
+.success-modal-box{max-width:500px;text-align:center}
+.success-icon{width:72px;height:72px;background:linear-gradient(135deg,#d1fae5,#6ee7b7);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem}
+.success-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.875rem;font-weight:800;color:var(--ink);margin-bottom:.75rem}
+.success-msg{color:var(--muted);font-size:.9375rem;line-height:1.7;margin-bottom:1.75rem}
+.success-details{background:var(--cream);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.375rem;margin-bottom:1.75rem;text-align:left}
+.sd-row{display:flex;align-items:center;gap:.75rem;padding:.625rem 0;border-bottom:1px solid var(--border);font-size:.9375rem}
+.sd-row:last-child{border-bottom:none}
+.sd-icon{font-size:1.125rem;width:24px;text-align:center;flex-shrink:0}
+.sd-text{font-weight:600;color:var(--ink)}
+.wa-cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;background:#25D366;color:#fff;padding:1rem 2rem;border-radius:var(--radius);font-weight:700;font-size:1rem;border:none;cursor:pointer;text-decoration:none;width:100%;transition:all .3s ease;box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.wa-cta-btn:hover{background:#22c55e;transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.4)}
+.notif-sent{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1.25rem;font-size:.8125rem;font-weight:600;color:var(--emerald)}
+
 /* WHATSAPP */
 .wa-float{position:fixed;bottom:28px;right:28px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);cursor:pointer;z-index:8000;text-decoration:none;animation:waBounce 2.5s ease-in-out infinite;transition:transform .2s,box-shadow .2s}
 .wa-float:hover{animation:none;transform:scale(1.1);box-shadow:0 10px 32px rgba(37,211,102,.55)}
 @keyframes waBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 .wa-float svg{width:30px;height:30px;color:#fff}
 
 /* MODALS */
@@ -337,6 +353,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
   .modal-box{padding:2rem 1.5rem}
 }
 </style>
+
+<!-- Razorpay SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -900,8 +919,41 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;c
         <div class="big">&#8377;99</div>
         <p>One-time payment</p>
       </div>
-      <button class="btn-primary btn-flame" onclick="completeReg()" style="width:100%">PAY &#8377;99 &amp; RESERVE SEAT</button>
+      <button class="btn-primary btn-flame" id="pay-btn" onclick="launchRazorpay()" style="width:100%">
+        <span id="pay-btn-text">PAY &#8377;99 &amp; RESERVE SEAT &#128274;</span>
+      </button>
       <p class="back-link" onclick="goStep1()">&#8592; Back to edit</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1.25rem;opacity:.5;font-size:.8125rem;font-weight:600;color:var(--muted)">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+        Secured by Razorpay &nbsp;&middot;&nbsp; 256-bit SSL &nbsp;&middot;&nbsp; UPI / Cards / NetBanking
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SUCCESS MODAL -->
+<div id="success-modal" class="modal-overlay">
+  <div class="modal-box success-modal-box">
+    <div class="success-icon">&#10004;&#65039;</div>
+    <h3 class="success-title">You're In! &#127881;</h3>
+    <p class="success-msg">
+      Hello &#128075; Your seat for the <strong>AI Tools &amp; ChatGPT Mastery 2026</strong> Masterclass is confirmed &#9989;<br><br>
+      A confirmation has been sent to your <strong>email</strong> and <strong>phone</strong>.
+    </p>
+    <div class="success-details">
+      <div class="sd-row"><span class="sd-icon">&#128197;</span><span class="sd-text">Date: 22 March 2026</span></div>
+      <div class="sd-row"><span class="sd-icon">&#9200;</span><span class="sd-text">Time: 11:00 AM IST</span></div>
+      <div class="sd-row"><span class="sd-icon">&#128205;</span><span class="sd-text">Platform: Zoom (link via WhatsApp group)</span></div>
+      <div class="sd-row"><span class="sd-icon">&#127891;</span><span class="sd-text">Certificate of Participation included</span></div>
+    </div>
+    <a href="https://chat.whatsapp.com/GPr7ARlNrpoDhlZ3RTzdil?mode=hq2tcla" target="_blank" class="wa-cta-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Join Private WhatsApp Group
+    </a>
+    <div class="notif-sent">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+      Confirmation sent via Email &amp; SMS
     </div>
   </div>
 </div>
@@ -973,19 +1025,195 @@ function calcROI(){
   document.getElementById('roi-result').classList.add('show');
 }
 
+// ─── CONFIG ─────────────────────────────────────────────
+// Replace with your actual Razorpay Key ID from dashboard.razorpay.com
+const RAZORPAY_KEY = 'rzp_test_REPLACE_WITH_YOUR_KEY';
+// Replace with your actual WhatsApp group invite link
+const WA_GROUP_LINK = 'https://chat.whatsapp.com/GPr7ARlNrpoDhlZ3RTzdil?mode=hq2tcla';
+
+// ─── MODAL CONTROLS ──────────────────────────────────────
 function openRegModal(){document.getElementById('reg-modal').classList.add('open');document.body.style.overflow='hidden'}
 function closeRegModal(){document.getElementById('reg-modal').classList.remove('open');document.body.style.overflow=''}
+
 function goStep2(){
-  const n=document.getElementById('reg-name').value.trim(),e=document.getElementById('reg-email').value.trim(),p=document.getElementById('reg-phone').value.trim();
-  if(!n||!e||!p){alert('Please fill in all fields');return;}
+  const n=document.getElementById('reg-name').value.trim();
+  const e=document.getElementById('reg-email').value.trim();
+  const p=document.getElementById('reg-phone').value.trim();
+  if(!n||!e||!p){showFieldError();return;}
+  // Basic email validation
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){alert('Please enter a valid email address');return;}
+  // Basic phone validation (10 digits after optional +91)
+  const cleanPhone=p.replace(/[\s\-]/g,'');
+  if(!/^(\+91)?[6-9]\d{9}$/.test(cleanPhone)){alert('Please enter a valid 10-digit Indian mobile number');return;}
   document.getElementById('c-name').textContent=n;
   document.getElementById('c-email').textContent=e;
   document.getElementById('c-phone').textContent=p;
   document.getElementById('reg-step1').classList.remove('active');
   document.getElementById('reg-step2').classList.add('active');
 }
+
+function showFieldError(){
+  const fields=['reg-name','reg-email','reg-phone'];
+  fields.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el.value.trim()){el.style.borderColor='var(--rose)';setTimeout(()=>el.style.borderColor='',2500)}
+  });
+  alert('Please fill in all fields to continue');
+}
+
 function goStep1(){document.getElementById('reg-step2').classList.remove('active');document.getElementById('reg-step1').classList.add('active')}
-function completeReg(){alert('Payment integration: Connect to Razorpay API');closeRegModal()}
+
+// ─── RAZORPAY PAYMENT ────────────────────────────────────
+function launchRazorpay(){
+  const name=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const phone=document.getElementById('reg-phone').value.trim().replace(/[^\d]/g,'');
+  const cleanPhone=phone.length===10?'91'+phone:phone;
+
+  // Show loading state
+  const btn=document.getElementById('pay-btn');
+  btn.disabled=true;
+  btn.style.opacity='0.75';
+  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="animation:spin 0.8s linear infinite;vertical-align:middle;margin-right:6px"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Opening Razorpay...';
+
+  const options={
+    key: RAZORPAY_KEY,
+    amount: 9900,           // Amount in paise (99 × 100)
+    currency: 'INR',
+    name: 'Upnova Institute',
+    description: 'AI Tools & ChatGPT Mastery 2026 – Live Masterclass',
+    image: 'https://i.imgur.com/placeholder.png', // Replace with your logo URL
+    
+    // Pre-fill customer details
+    prefill:{
+      name: name,
+      email: email,
+      contact: '+'+cleanPhone
+    },
+
+    // Razorpay built-in notifications config
+    // Razorpay automatically sends email+SMS confirmation when these are set
+    notify:{
+      sms: true,
+      email: true
+    },
+
+    // Notes stored with the payment (visible in Razorpay dashboard)
+    notes:{
+      event: 'AI Tools & ChatGPT Mastery 2026',
+      event_date: '22 March 2026',
+      event_time: '11:00 AM IST',
+      customer_name: name,
+      whatsapp: phone
+    },
+
+    theme:{
+      color: '#0ea5e9',
+      backdrop_color: 'rgba(11,14,20,0.85)'
+    },
+
+    modal:{
+      ondismiss: function(){
+        // Reset button if user closes Razorpay without paying
+        btn.disabled=false;
+        btn.style.opacity='1';
+        btn.innerHTML='PAY &#8377;99 &amp; RESERVE SEAT &#128274;';
+      }
+    },
+
+    // ── SUCCESS HANDLER ──────────────────────────────────
+    handler: function(response){
+      // response.razorpay_payment_id  — unique payment ID
+      // response.razorpay_order_id    — order ID (if using orders API)
+      // response.razorpay_signature   — signature (verify server-side)
+
+      closeRegModal();
+      showSuccessModal(name, email, phone, response.razorpay_payment_id);
+
+      // ── RAZORPAY BUILT-IN: email + SMS auto-sent by Razorpay ──
+      // Razorpay automatically sends payment receipt to prefill.email + prefill.contact
+      // To send CUSTOM confirmation message, use Razorpay Webhooks on your server:
+      //
+      // Webhook event: payment.captured
+      // Your backend receives POST → sends custom email via SendGrid/Mailgun
+      // and SMS via MSG91/Twilio with the message below:
+      //
+      // "Hello 👋 Your seat for the AI Tools & ChatGPT Mastery 2026 Masterclass
+      //  is confirmed ✅ 📅 Date: 22 March 2026 ⏰ Time: 11:00 AM
+      //  Join WhatsApp group: [WA_GROUP_LINK]
+      //  We look forward to seeing you 🚀 – Team Upnova Institute"
+
+      console.log('Payment successful. ID:', response.razorpay_payment_id);
+
+      // Push to analytics (if connected)
+      if(typeof gtag!=='undefined'){
+        gtag('event','purchase',{currency:'INR',value:99,transaction_id:response.razorpay_payment_id});
+      }
+    }
+  };
+
+  // Check if Razorpay SDK loaded
+  if(typeof Razorpay==='undefined'){
+    alert('Payment gateway is loading. Please wait a moment and try again.');
+    btn.disabled=false;btn.style.opacity='1';
+    btn.innerHTML='PAY &#8377;99 &amp; RESERVE SEAT &#128274;';
+    return;
+  }
+
+  const rzp=new Razorpay(options);
+  
+  rzp.on('payment.failed',function(response){
+    btn.disabled=false;btn.style.opacity='1';
+    btn.innerHTML='PAY &#8377;99 &amp; RESERVE SEAT &#128274;';
+    alert('Payment failed: '+response.error.description+'\nPlease try again or use a different payment method.');
+    console.error('Razorpay error:',response.error);
+  });
+
+  rzp.open();
+}
+
+// ─── SUCCESS MODAL ────────────────────────────────────────
+function showSuccessModal(name,email,phone,paymentId){
+  // Update WA group link
+  document.querySelector('#success-modal .wa-cta-btn').href=WA_GROUP_LINK;
+  
+  // Show payment ID in console (user can screenshot Razorpay receipt)
+  console.log('Booking confirmed for:',name,email,'Payment:',paymentId);
+  
+  document.getElementById('success-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  
+  // Confetti burst
+  launchConfetti();
+}
+
+function closeSuccessModal(){
+  document.getElementById('success-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.getElementById('success-modal').addEventListener('click',function(e){
+  if(e.target===this)closeSuccessModal();
+});
+
+// ─── MINI CONFETTI ────────────────────────────────────────
+function launchConfetti(){
+  const colors=['#0ea5e9','#f97316','#10b981','#fbbf24','#ef4444','#a78bfa'];
+  const container=document.body;
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    const size=Math.random()*8+4;
+    el.style.cssText=`position:fixed;top:-10px;left:${Math.random()*100}vw;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};pointer-events:none;z-index:99999;animation:confettiFall ${Math.random()*2+1.5}s ease-in forwards;animation-delay:${Math.random()*0.5}s`;
+    container.appendChild(el);
+    setTimeout(()=>el.remove(),(Math.random()*2+2)*1000);
+  }
+}
+
+// Add confetti keyframe dynamically
+const confettiStyle=document.createElement('style');
+confettiStyle.textContent='@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}';
+document.head.appendChild(confettiStyle);
+
 document.getElementById('reg-modal').addEventListener('click',function(e){if(e.target===this)closeRegModal()});
 
 let exitShown=false;
