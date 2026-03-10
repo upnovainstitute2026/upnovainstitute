@@ -1542,28 +1542,34 @@ function launchConfetti(){
 // ---------------------------------------------------------
 // ─────────────────────────────────────────────────────────
 
-const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxDprIpxHhB9c-FA8_N-rCTrL4OVmEWAZzaoU48Hxim-wzxX9Bkp_Sh61zXQf1j3zy1/exec';
+// Getform.io endpoint — replace with your own from getform.io/forms
+// Steps: 1) Go to getform.io  2) Sign up free  3) Create form  4) Copy endpoint URL
+const SHEETS_WEBHOOK_URL = 'https://forminit.com/f/t6ila7t7h30';
 
 async function sendToSheets(data) {
-  if (!SHEETS_WEBHOOK_URL) { console.log('No webhook URL set'); return; }
+  if (!SHEETS_WEBHOOK_URL) { console.log('No webhook URL'); return; }
   try {
-    // Use GET + URL params — works reliably with Google Apps Script (no CORS issues)
-    const params = new URLSearchParams({
-      type:      data.type      || '',
-      name:      data.name      || '',
-      email:     data.email     || '',
-      phone:     data.phone     || '',
-      paymentId: data.paymentId || '',
-      status:    data.status    || ''
+    // Getform.io — works perfectly from any HTML file, no CORS issues
+    const formData = new FormData();
+    formData.append('_type',      data.type      || '');
+    formData.append('name',       data.name      || '');
+    formData.append('email',      data.email     || '');
+    formData.append('phone',      data.phone     || '');
+    formData.append('payment_id', data.paymentId || '');
+    formData.append('status',     data.status    || '');
+    formData.append('source',     'AI Masterclass 2026 Landing Page');
+
+    const res = await fetch(SHEETS_WEBHOOK_URL, {
+      method: 'POST',
+      body: formData
     });
-    const url = SHEETS_WEBHOOK_URL + '?' + params.toString();
-    // Use Image beacon — bypasses CORS entirely, works from any HTML file
-    const img = new Image();
-    img.src = url;
-    img.onload  = () => console.log('✅ Lead saved to Google Sheets:', data.email || data.type);
-    img.onerror = () => console.log('✅ Lead sent (beacon):', data.email || data.type);
+    if(res.ok){
+      console.log('✅ Lead saved to Getform:', data.email || data.type);
+    } else {
+      console.warn('Getform responded:', res.status);
+    }
   } catch(err) {
-    console.warn('Sheets save failed (non-critical):', err);
+    console.warn('Lead save failed (non-critical):', err);
   }
 }
 
