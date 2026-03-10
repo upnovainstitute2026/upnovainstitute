@@ -1423,6 +1423,8 @@ function goStep2(){
   document.getElementById('c-name').textContent=n;
   document.getElementById('c-email').textContent=e;
   document.getElementById('c-phone').textContent=p;
+  // Save full registration details to Sheets (before payment)
+  sendToSheets({ type: 'Registration Started', name: n, email: e, phone: p, status: 'Form Filled - Payment Pending' });
   document.getElementById('reg-step1').classList.remove('active');
   document.getElementById('reg-step2').classList.add('active');
 }
@@ -1477,6 +1479,8 @@ function showSuccessModal(name,email,phone,paymentId){
   console.log('Booking confirmed for:',name,email,'Payment:',paymentId);
   // Track conversion
   if(typeof fbq!=='undefined') fbq('track','Purchase',{currency:'INR',value:99,content_name:'AI Masterclass 2026'});
+  // Save confirmed payment to Google Sheets
+  sendToSheets({ type: 'PAID ✅', name: name, email: email, phone: phone, paymentId: paymentId, status: 'Payment Confirmed' });
   if(typeof gtag!=='undefined') gtag('event','purchase',{currency:'INR',value:99,transaction_id:paymentId});
   
   document.getElementById('success-modal').classList.add('open');
@@ -1510,6 +1514,53 @@ function launchConfetti(){
 
 
 
+
+// ─── GOOGLE SHEETS LEAD CAPTURE ──────────────────────────
+// HOW TO SET UP (5 minutes):
+// 1. Go to sheets.google.com → create a new sheet
+// 2. Name columns: Timestamp | Type | Name | Email | Phone | Payment ID | Status
+// 3. Go to Extensions → Apps Script → paste the Apps Script code from comments below
+// 4. Deploy as Web App → Copy the URL → paste it as SHEETS_WEBHOOK_URL below
+//
+// APPS SCRIPT CODE (paste into Extensions > Apps Script):
+// ─────────────────────────────────────────────────────────
+// function doPost(e) {
+//   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+//   var data = JSON.parse(e.postData.contents);
+//   sheet.appendRow([
+//     new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}),
+//     data.type || '',
+//     data.name || '',
+//     data.email || '',
+//     data.phone || '',
+//     data.paymentId || '',
+//     data.status || ''
+//   ]);
+//   return ContentService.createTextOutput(JSON.stringify({result:'success'}))
+//     .setMimeType(ContentService.MimeType.JSON);
+// }
+// ─────────────────────────────────────────────────────────
+
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyNFqYxa5APCudGckR-QVZUX1o5UAtoZCOEQPZKhRnOOMzydxHUhH9STfnVNEtVjRHO/exec';
+
+async function sendToSheets(data) {
+  if (!SHEETS_WEBHOOK_URL || SHEETS_WEBHOOK_URL === 'https://script.google.com/macros/s/AKfycbyNFqYxa5APCudGckR-QVZUX1o5UAtoZCOEQPZKhRnOOMzydxHUhH9STfnVNEtVjRHO/exec') {
+    console.log('📋 Lead (Sheets not connected yet):', data);
+    return;
+  }
+  try {
+    await fetch(SHEETS_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    console.log('✅ Lead saved to Google Sheets:', data.email);
+  } catch(err) {
+    console.warn('Sheets save failed (non-critical):', err);
+  }
+}
+
 // ─── LEAD MAGNET ─────────────────────────────────────────
 function claimFreeGift(){
   const em = document.getElementById('lead-email').value.trim();
@@ -1526,6 +1577,8 @@ function claimFreeGift(){
   if(typeof gtag!=='undefined') gtag('event','generate_lead',{currency:'INR',value:0});
   // Store in sessionStorage for follow-up
   sessionStorage.setItem('upnova_lead_email', em);
+  // Save lead to Google Sheets
+  sendToSheets({ type: 'Lead Magnet Email', email: em, status: 'Email Only - Not Paid' });
   console.log('Lead captured:', em);
   // Move to registration step
   document.getElementById('reg-step0').classList.remove('active');
